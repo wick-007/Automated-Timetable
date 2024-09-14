@@ -1,0 +1,52 @@
+.conflict-reports {
+    padding: 20px;
+  }
+  
+  .conflict-reports h2 {
+    margin-bottom: 20px;
+  }
+  
+  .report-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .report-item {
+    padding: 15px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .report-item h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .report-item p {
+    margin: 0;
+  }
+  
+  .report-actions {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .report-actions button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .report-actions button.resolve {
+    background-color: #2196F3;
+  }
+  
+  .report-actions button.reject {
+    background-color: #f44336;
+  }
+  

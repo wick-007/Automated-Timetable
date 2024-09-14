@@ -1,0 +1,37 @@
+.generated-timetable {
+    padding: 20px;
+  }
+  
+  .day-selector {
+    margin-bottom: 20px;
+  }
+  
+  .day-selector button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .day-selector button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .timetable-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .timetable-table th, .timetable-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .timetable-table th {
+    background-color: #f4f4f4;
+  }
+  

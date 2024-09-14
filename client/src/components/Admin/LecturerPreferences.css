@@ -1,0 +1,48 @@
+.lecturer-preferences {
+    padding: 20px;
+  }
+  
+  .lecturer-preferences h2 {
+    margin-bottom: 20px;
+  }
+  
+  .preference-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .preference-item {
+    padding: 15px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .preference-item h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .preference-item p {
+    margin: 0;
+  }
+  
+  .preference-actions {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .preference-actions button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .preference-actions button.reject {
+    background-color: #f44336;
+  }
+  

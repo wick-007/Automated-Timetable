@@ -1,0 +1,304 @@
+.student-dashboard {
+  display: flex;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.menu {
+  background-color: #4CAF50;
+  color: white;
+  width: 250px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.menu .logo {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menu ul li svg {
+  margin-right: 10px;
+}
+
+.menu-spacing {
+  height: 50px;
+}
+
+.content {
+  background-color: #f0f0f0;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 10px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  margin-right: 10px;
+}
+
+.notification-bell {
+  font-size: 20px;
+}
+
+.timetable {
+  margin: 20px 0;
+}
+
+.timetable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable th, .timetable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.timetable th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.courses {
+  margin: 20px 0;
+}
+
+.courses-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course-item {
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.course-symbol {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.add-schedule-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-schedule-button svg {
+  margin-right: 10px;
+}
+
+.upcoming-classes-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.upcoming-classes {
+  background-color: rgb(113, 148, 153);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(201, 175, 175, 0.1);
+  flex: 1;
+  margin-right: 20px;
+  overflow-y: auto;
+  height: 400px;
+}
+
+.upcoming-class p {
+  margin: 0;
+  color: #568133;
+}
+
+.assignments {
+  margin-bottom: 20px;
+}
+
+.calendar-container {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  height: 400px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+}
+
+.react-calendar__tile {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.react-calendar__tile--now {
+  background: #0e110e;
+  color: white;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ddd;
+  margin-top: auto; /* Push footer to the bottom */
+}
+
+.day-selector button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #289e4f;
+  cursor: pointer;
+}
+
+.day-selector button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.conflict-form, .preferences-form {
+  margin: 20px 0;
+}
+
+.conflict-form textarea, .preferences-form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.conflict-form button, .preferences-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-overlay form {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.form-overlay form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-overlay form input, .form-overlay form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e25a5a;
+  border-radius: 5px;
+}
+
+.form-overlay form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-overlay form button[type="button"] {
+  background-color: #dc3545;
+}
+
+.graphs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.graph-container {
+  width: 45%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.print-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

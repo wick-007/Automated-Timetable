@@ -1,0 +1,332 @@
+.teacher-dashboard {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.menu {
+  background-color: #4CAF50;
+  color: white;
+  width: 250px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.menu .logo {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menu ul li svg {
+  margin-right: 10px;
+}
+
+.menu-spacing {
+  height: 50px; 
+}
+
+.content {
+  background-color: #f0f0f0;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 10px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  margin-right: 10px;
+}
+
+.notification-bell {
+  font-size: 20px;
+}
+
+.timetable {
+  margin: 20px 0;
+}
+
+.timetable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable th, .timetable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.timetable th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.chart {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 48%;
+  text-align: center;
+}
+
+.notifications {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.notification-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1;
+  margin: 0 10px;
+  position: relative;
+}
+
+.notification-box .close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sidebar {
+  margin-top: 20px;
+}
+
+.upcoming-classes {
+  margin-bottom: 20px;
+}
+
+.upcoming-class {
+  background-color: white;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.assignments {
+  margin-bottom: 20px;
+}
+
+.calendar {
+  margin-bottom: 20px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.teacher-dashboard {
+  padding: 20px;
+}
+
+.day-selector {
+  margin-bottom: 20px;
+}
+
+.day-selector button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.timetable {
+  display: flex;
+  flex-direction: column;
+}
+
+.timetable-day {
+  margin-top: 20px;
+}
+
+.timetable-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.timetable-entry div {
+  padding: 5px;
+}
+
+.notifications ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notifications li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.day-selector button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #11a03c;
+  cursor: pointer;
+}
+
+.day-selector button.active {
+  background-color: #007bff;
+  color: rgb(122, 13, 13);
+}
+
+.conflict-form, .preferences-form {
+  margin: 20px 0;
+}
+
+.conflict-form textarea, .preferences-form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.conflict-form button, .preferences-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-overlay form {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.form-overlay form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-overlay form input, .form-overlay form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-overlay form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-overlay form button[type="button"] {
+  background-color: #dc3545;
+}
+
+/* Modal styles */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button[type="button"] {
+  background-color: #dc3545;
+}

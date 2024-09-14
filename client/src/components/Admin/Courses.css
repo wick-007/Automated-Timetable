@@ -1,0 +1,88 @@
+
+.courses {
+    padding: 20px;
+  }
+  
+  .course-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .course-form label {
+    margin-bottom: 10px;
+  }
+  
+  .course-form input {
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius:20px;
+    border: 2px solid #ddd;
+  }
+  
+  .course-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 300px;
+  }
+
+  .course-form button:hover{
+    background-color: #03440c;
+  }
+  
+  
+  .course-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .course-list li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    display: flex;
+    border-radius: 5px;
+    margin: inherit;
+    justify-content: space-around;
+    width: 500px;
+  }
+  .message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .message.success {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .message.error {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .deletebtn,.addcoursebtn {
+    margin-top: 10px;
+  padding: 10px;
+  margin-left: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+
+  }
+
+  .deletebtn:hover{
+    background-color: #03440c;
+  }
+  .addcoursebtn:hover{
+    background-color: #03440c;
+  }

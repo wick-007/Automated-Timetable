@@ -1,0 +1,68 @@
+
+.lecturers {
+    padding: 20px;
+  }
+  
+  .lecturer-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .lecturer-form label {
+    margin-bottom: 10px;
+  }
+  
+  .lecturer-form input {
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius:20px;
+    border: 2px solid #ddd;
+  }
+
+  .lecturer-form select {
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius:20px;
+    border: 2px solid #ddd;
+  }
+  
+  
+  .lecturer-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 300px;
+  }
+
+  .lecturer-form button:hover{
+    background-color: #03440c;
+  }
+  
+  .lecturer-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .lecturer-list li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    border-radius: 5px;
+    margin: inherit;
+    justify-content: space-around;
+    width: 500px;
+  }
+
+  
+  .lecturer-list button{
+    margin-left: auto;
+  }
+  
+  

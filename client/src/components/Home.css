@@ -1,0 +1,78 @@
+.home-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url('./UMaT_photo.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.home-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(65, 182, 71, 0.8); /* Form background colour */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #fff; /* Ensuring the text is white for contrast */
+  width: 300px; /* Reduced width of the form */
+}
+
+.home-content h1 {
+  margin-bottom: 20px;
+  font-size: 1.8em; /* Adjusted font size */
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%; /* Full width of the form */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%; /* Full width of the form */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #008000; /* Green color for the button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #f0f0f0;
+}
