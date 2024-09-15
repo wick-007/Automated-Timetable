@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -31,17 +32,18 @@ app.use('/api', authRoutes); // Assuming you have authRoutes for authentication
 // Define User model (make sure to include the path to your User model)
 const User = require('./models/User');
 
-mongoose.connect('mongodb://localhost:27017/timetable', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
   console.log('Connected to MongoDB');
 }).catch((err) => {
   console.error('Error connecting to MongoDB:', err.message);
 });
 
 app.post('/api/authenticate', async (req, res) => {
+  console.log(req.body);
   const { role, id, password } = req.body;
+
+
   const user = await User.findOne({ role, id });
   if (user && bcrypt.compareSync(password, user.password)) {
     res.send({ success: true });

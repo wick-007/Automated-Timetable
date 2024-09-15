@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const { timeToMinutes } = require('../utils/index')
 
+// Define the schema for individual timetable entries
 const timetableEntrySchema = new mongoose.Schema({
   course: {
     type: mongoose.Schema.Types.ObjectId,
@@ -18,6 +20,7 @@ const timetableEntrySchema = new mongoose.Schema({
   }
 });
 
+// Define the main timetable schema
 const timetableSchema = new mongoose.Schema({
   day: {
     type: String,
@@ -31,7 +34,24 @@ const timetableSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  entries: [timetableEntrySchema]
+  // This is the field to store the time entries
+  entries: [timetableEntrySchema],
+  // New fields to store start and end times in minutes
+  startTime: {
+    type: Number,
+    required: true,
+  },
+  endTime: {
+    type: Number,
+    required: true,
+  }
+});
+
+// Pre-save middleware to calculate and store startTime and endTime
+timetableSchema.pre('save', function (next) {
+  this.startTime = timeToMinutes(this.time); // Convert the provided time to minutes
+  this.endTime = this.startTime + this.duration * 60; // Calculate end time based on duration
+  next();
 });
 
 module.exports = mongoose.model('Timetable', timetableSchema);

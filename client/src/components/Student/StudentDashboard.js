@@ -19,6 +19,7 @@ const StudentDashboard = () => {
   const [timetable, setTimetable] = useState([]);
   const [selectedDay, setSelectedDay] = useState(new Date().toLocaleDateString('en-US', { weekday: 'long' }));
   const [upcomingClasses, setUpcomingClasses] = useState([]);
+  const [conflict, setConflict] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -180,9 +181,15 @@ const StudentDashboard = () => {
 //CHANGES TO MAKE TO TEACHER DASHBOARD FOR PRINTING PDF STARTS HERE!!!!, THE BUTTONS AND THE FUNCTIONS
   const renderTimetable = () => (
     <div className="timetable">
-      <h2>Timetable</h2>
-      <button onClick={printTimetableForSelectedDay} className="print-button">Print Timetable for Selected Day</button> {/* Button to print selected day */}
-      <button onClick={printWholeTimetable} className="print-button">Print Full Timetable</button> {/* Button to print full timetable */}
+      {/* <h2>Timetable</h2> */}
+      <div className='__btn__container'><div className='__print__btn__container'>
+        <button onClick={exportSelctedDayToExcel} className="__export__btn" style={{ marginRight: 10}}>Export Timetable For Selected Day</button> 
+        <button onClick={exportAllDaysToExcel} className="__export__btn">Export Full Timetable</button>
+      </div>
+      <div className='__print__btn__container'>
+        <button onClick={printTimetableForSelectedDay} className="print-button" style={{ marginRight: 10}}>Print Timetable for Selected Day</button> 
+        <button onClick={printWholeTimetable} className="print-button">Print Full Timetable</button>
+      </div></div>
       <div className="day-selector">
         {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
           <button
@@ -242,7 +249,90 @@ const StudentDashboard = () => {
   
     doc.save('Full_Timetable.pdf');
   };
-    
+
+  const exportSelctedDayToExcel = async () => {
+    const XLSX = await import("https://cdn.sheetjs.com/xlsx-0.19.2/package/xlsx.mjs");
+  
+    // Prepare the data
+    const columns = ['Time', 'Classroom', 'Course Code', 'Lecturer', 'Duration'];
+    const rows = [];
+  
+    timetable
+      .filter(entry => entry.day === selectedDay)
+      .forEach(entry => {
+        entry.entries.forEach(e => {
+          const [startHour, startMinute] = entry.time.split(':').map(Number);
+          const endHour = startHour + entry.duration; // Calculate end time based on duration
+          const endTime = `${endHour.toString().padStart(2, '0')}:${startMinute.toString().padStart(2, '0')}`;
+          rows.push([`${entry.time} - ${endTime}`, e.classroom.name, e.course.code, e.lecturer.name, `${entry.duration} hour(s)`]);
+        });
+      });
+  
+    // Convert rows to worksheet
+    const worksheet = XLSX.utils.aoa_to_sheet([columns, ...rows]);
+      // Set column widths
+  const colWidths = [
+    { width: 20 }, // Width for 'Time'
+    { width: 20 }, // Width for 'Classroom'
+    { width: 15 }, // Width for 'Course Code'
+    { width: 30 }, // Width for 'Lecturer'
+    { width: 15 }  // Width for 'Duration'
+  ];
+  worksheet['!cols'] = colWidths;
+  
+    // Create a new workbook and append the worksheet
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, selectedDay);
+  
+    // Write the workbook to a file
+    XLSX.writeFile(workbook, `Timetable_${selectedDay}.xlsx`, { compression: true });
+  };
+
+  const exportAllDaysToExcel = async () => {
+    const XLSX = await import("https://cdn.sheetjs.com/xlsx-0.19.2/package/xlsx.mjs");
+  
+    // Prepare the workbook
+    const workbook = XLSX.utils.book_new();
+  
+    // Get unique days from the timetable
+    const days = [...new Set(timetable.map(entry => entry.day))];
+  
+    // Loop through each day and prepare the worksheet
+    days.forEach(day => {
+      const columns = ['Time', 'Classroom', 'Course Code', 'Lecturer', 'Duration'];
+      const rows = [];
+  
+      timetable
+        .filter(entry => entry.day === day)
+        .forEach(entry => {
+          entry.entries.forEach(e => {
+            const [startHour, startMinute] = entry.time.split(':').map(Number);
+            const endHour = startHour + entry.duration; // Calculate end time based on duration
+            const endTime = `${endHour.toString().padStart(2, '0')}:${startMinute.toString().padStart(2, '0')}`;
+            rows.push([`${entry.time} - ${endTime}`, e.classroom.name, e.course.code, e.lecturer.name, `${entry.duration} hour(s)`]);
+          });
+        });
+  
+      // Convert rows to worksheet
+      const worksheet = XLSX.utils.aoa_to_sheet([columns, ...rows]);
+  
+      // Set column widths
+      const colWidths = [
+        { width: 20 }, // Width for 'Time'
+        { width: 20 }, // Width for 'Classroom'
+        { width: 15 }, // Width for 'Course Code'
+        { width: 30 }, // Width for 'Lecturer'
+        { width: 15 }  // Width for 'Duration'
+      ];
+      worksheet['!cols'] = colWidths;
+  
+      // Append the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, day);
+    });
+  
+    // Write the workbook to a file
+    XLSX.writeFile(workbook, 'Timetable_All_Days.xlsx', { compression: true });
+  };
   
 
   // Define the days of the week

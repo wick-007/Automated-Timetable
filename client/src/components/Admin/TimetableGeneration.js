@@ -16,13 +16,17 @@ const TimetableGeneration = ({ setMessage }) => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  
   const fetchData = async () => {
     try {
-      const coursesResponse = await axios.get('http://localhost:5001/api/courses');
-      const lecturersResponse = await axios.get('http://localhost:5001/api/lecturers');
-      const classroomsResponse = await axios.get('http://localhost:5001/api/classrooms');
-
+      // Create an array of promises
+      const [coursesResponse, lecturersResponse, classroomsResponse] = await Promise.all([
+        axios.get('http://localhost:5001/api/courses'),
+        axios.get('http://localhost:5001/api/lecturers'),
+        axios.get('http://localhost:5001/api/classrooms'),
+      ]);
+  
+      // Set the state with the fetched data
       setCourses(coursesResponse.data);
       setLecturers(lecturersResponse.data);
       setClassrooms(classroomsResponse.data);
@@ -31,6 +35,7 @@ const TimetableGeneration = ({ setMessage }) => {
       setMessage({ type: 'error', text: 'Error fetching data' });
     }
   };
+  
 
   const handleScheduleChange = (index, field, value) => {
     const updatedSchedules = schedules.map((schedule, i) =>
@@ -50,7 +55,7 @@ const TimetableGeneration = ({ setMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/timetable', {
+      const response = await axios.post('http://localhost:5001/api/timetable/new', {
         day,
         time,
         duration,
@@ -59,7 +64,7 @@ const TimetableGeneration = ({ setMessage }) => {
       setMessage({ type: 'success', text: 'Timetable generated successfully' });
     } catch (error) {
       console.error('Error generating timetable', error);
-      setMessage({ type: 'error', text: 'Error generating timetable' });
+      setMessage({ type: 'error', text: 'Error generating timetable' + (error.response?.data.message || 'Unknown error') });
     }
   };
 

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
+import { APP_ROLES } from '../lib/constants';
 
+const  { ADMIN, TEACHER, STUDENT} = APP_ROLES;
 const Home = () => {
-  const [role, setRole] = useState('admin');
+  const [role, setRole] = useState(ADMIN);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -14,8 +16,8 @@ const Home = () => {
     try {
       const response = await axios.post('http://localhost:5001/api/authenticate', { role, id, password });
       if (response.data.success) {
-        if (role === 'admin') navigate('/admin');
-        else if (role === 'teacher') navigate('/teacher');
+        if (role === ADMIN) navigate('/admin');
+        else if (role === TEACHER) navigate('/teacher');
         else navigate('/student');
       } else {
         alert('Authentication failed');
@@ -35,9 +37,9 @@ const Home = () => {
           <div className="form-group">
             <label>Select Role:</label>
             <select value={role} onChange={(e) => setRole(e.target.value)} className="form-control">
-              <option value="admin">Admin</option>
-              <option value="teacher">Teacher</option>
-              <option value="student">Student</option>
+              <option value={ADMIN}>Admin</option>
+              <option value={TEACHER}>Teacher</option>
+              <option value={STUDENT}>Student</option>
             </select>
           </div>
           <div className="form-group">

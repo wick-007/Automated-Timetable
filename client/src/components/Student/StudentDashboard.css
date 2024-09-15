@@ -79,7 +79,7 @@ header {
   margin: 20px 0;
 }
 
-.timetable table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -294,6 +294,27 @@ header {
 }
 
 .print-button {
+  background-color: #388ae9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.__btn__container {
+  margin-bottom: 40px;
+}
+
+.__print__btn__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.__export__btn {
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;

@@ -1,6 +1,8 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const Timetable = require('../models/Timetable');
+const { timeToMinutes } = require('../utils/index')
 
 // Get all timetable entries
 router.get('/', async (req, res) => {
@@ -63,6 +65,74 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/new', async (req, res) => {
+  const { day, time, duration, entries } = req.body;
+
+  // Convert the start and end time of the new entry to minutes
+  const startMinutes = timeToMinutes(time);
+  const endMinutes = startMinutes + duration * 60;
+
+  try {
+    // Extract lecturer and classroom from the entries for conflict checking
+    const { lecturer, classroom } = entries[0]; // Assuming the first entry contains key details
+
+    // Convert lecturer and classroom to ObjectId using mongoose
+    const lecturerId = new mongoose.Types.ObjectId(lecturer);
+    const classroomId = new mongoose.Types.ObjectId(classroom);
+
+    // Log the converted ObjectIds for debugging purposes
+
+    // Find timetable entries that overlap on the same day AND have the same classroom or lecturer
+    const conflicts = await Timetable.find({
+      day,
+      $or: [
+        // Check for time overlap with the same lecturer inside entries array
+        {
+          entries: {
+            $elemMatch: {
+              lecturer: lecturerId // Same lecturer (ObjectId comparison inside entries array)
+            }
+          },
+          startTime: { $lte: endMinutes }, // Existing entry starts before or at the new entry's end
+          endTime: { $gte: startMinutes }  // Existing entry ends after or at the new entry's start
+        },
+        // Check for time overlap with the same classroom inside entries array
+        {
+          entries: {
+            $elemMatch: {
+              classroom: classroomId // Same classroom (ObjectId comparison inside entries array)
+            }
+          },
+          startTime: { $lte: endMinutes }, // Existing entry starts before or at the new entry's end
+          endTime: { $gte: startMinutes }  // Existing entry ends after or at the new entry's start
+        }
+      ]
+    });
+
+    // If conflicts exist, return a conflict error
+    if (conflicts.length > 0) {
+      return res.status(409).json({ message: 'Schedule conflict detected: Either classroom or lecturer is double-booked.' });
+    }
+
+    // If no conflicts, save the new timetable entry
+    const timetable = new Timetable({
+      day,
+      time,
+      duration,
+      entries,
+      startTime: startMinutes,
+      endTime: endMinutes
+    });
+    
+    const newTimetable = await timetable.save();
+    res.status(201).json(newTimetable);
+
+  } catch (err) {
+    // Log the error message for debugging
+    console.error(err);
+    res.status(400).json({ message: err.message });
+  }
+});
 
 // Update timetable entry
 router.put('/:id', async (req, res) => {
