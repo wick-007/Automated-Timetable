@@ -4,39 +4,6 @@
   overflow-y: auto;
 }
 
-.menu {
-  background-color: #4CAF50;
-  color: white;
-  width: 250px;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.menu .logo {
-  display: block;
-  margin: 0 auto 20px;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu ul li {
-  margin: 10px 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.menu ul li svg {
-  margin-right: 10px;
-}
-
-.menu-spacing {
-  height: 50px;
-}
-
 .content {
   background-color: #f0f0f0;
   flex-grow: 1;
@@ -159,26 +126,35 @@ table {
 }
 
 .assignments {
-  margin-bottom: 20px;
+  background-color: rgb(113, 148, 153);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(201, 175, 175, 0.1);
+  flex: 1;
+  margin-left: 20px;
+  overflow-y: auto;
+  height: 400px;
 }
 
 .calendar-container {
-  background-color: white;
+  background-color: lightblue;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   padding: 10px;
   height: 400px;
   overflow-y: auto;
   flex: 1;
+  height: 70%;
 }
 
 .react-calendar {
   width: 100%;
   border: none;
+  background-color: #007bff;
 }
 
 .react-calendar__tile {
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -186,7 +162,7 @@ table {
 }
 
 .react-calendar__tile--now {
-  background: #0e110e;
+  background: white;
   color: white;
 }
 
@@ -291,6 +267,7 @@ table {
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  /* height: 450px; */
 }
 
 .print-button {

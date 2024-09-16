@@ -42,7 +42,7 @@ const LecturerPreferences = () => {
   return (
     <div className="lecturer-preferences">
       <h2>Lecturer Preferences</h2>
-      <form onSubmit={handleSubmit} className="preference-form">
+      <form onSubmit={handleSubmit} className="form-group">
         <label>
           Lecturer ID:
           <input type="text" name="lecturer" value={formData.lecturer} onChange={handleInputChange} required />

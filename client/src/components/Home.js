@@ -33,9 +33,9 @@ const Home = () => {
       <div className="overlay"></div>
       <div className="home-content">
         <h1>Welcome to the Automated Timetable System</h1>
-        <form onSubmit={handleSubmit} className="signin-form">
+        <form onSubmit={handleSubmit} className="form-control">
           <div className="form-group">
-            <label>Select Role:</label>
+            <label style={{ color: 'white'}}>Select Role:</label>
             <select value={role} onChange={(e) => setRole(e.target.value)} className="form-control">
               <option value={ADMIN}>Admin</option>
               <option value={TEACHER}>Teacher</option>
@@ -43,11 +43,11 @@ const Home = () => {
             </select>
           </div>
           <div className="form-group">
-            <label>{role === 'student' ? 'Reference Number' : 'Unique ID'}:</label>
+            <label style={{ color: 'white'}}>{role === 'student' ? 'Reference Number' : 'Unique ID'}:</label>
             <input type="text" value={id} onChange={(e) => setId(e.target.value)} required className="form-control" />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label style={{ color: 'white'}}>Password:</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="form-control" />
           </div>
           <button type="submit" className="btn-submit">Sign In</button>

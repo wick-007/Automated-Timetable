@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import jsPDF from 'jspdf'; // Import jsPDF
 import 'jspdf-autotable'; // Import for tables in jsPDF
 import './TeacherDashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faBook, faCalendarAlt, faBell, faCog, faSignOutAlt, faClock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import GeneratedTimetable from './GeneratedTimetable';
+import AnalyticsCalendar from '../calendar';
+import HeaderImage from '../headerImage';
 
 const TeacherDashboard = () => {
   const [activeComponent, setActiveComponent] = useState('dashboard');
@@ -16,6 +16,7 @@ const TeacherDashboard = () => {
   const [selectedDay, setSelectedDay] = useState('Monday');
   const [preferences, setPreferences] = useState('');
   const [conflict, setConflict] = useState('');
+  const [upcomingClasses, setUpcomingClasses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const navigate = useNavigate();
@@ -23,6 +24,15 @@ const TeacherDashboard = () => {
   useEffect(() => {
     fetchTimetable();
   }, []);
+
+  useEffect(() => {
+    const updateUpcomingClasses = () => {
+      const classesForDay = timetable.filter(entry => entry.day === selectedDay);
+      setUpcomingClasses(classesForDay);
+    };
+
+    updateUpcomingClasses();
+  }, [timetable, selectedDay]);
 
   const fetchTimetable = async () => {
     try {
@@ -178,8 +188,8 @@ const TeacherDashboard = () => {
 
   return (
     <div className="teacher-dashboard">
-      <aside className="menu">
-        <img src="/umat_logo.png" alt="UMaT Logo" className="logo" />
+      <div className="sidebar">
+        <HeaderImage />
         <ul>
           <li onClick={() => setActiveComponent('dashboard')}><FontAwesomeIcon icon={faTachometerAlt} /> Dashboard</li>
           <li onClick={() => setActiveComponent('myClasses')}><FontAwesomeIcon icon={faBook} /> My Classes</li>
@@ -191,7 +201,7 @@ const TeacherDashboard = () => {
           <li onClick={() => setActiveComponent('settings')}><FontAwesomeIcon icon={faCog} /> Settings</li>
           <li onClick={handleLogout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</li>
         </ul>
-      </aside>
+      </div>
       <main className="content">
         <header>
           <input type="text" placeholder="Search..." className="search-bar" />
@@ -204,26 +214,7 @@ const TeacherDashboard = () => {
         <div className="main-content">
           {renderComponent()}
         </div>
-        <aside className="sidebar">
-          <div className="upcoming-classes">
-            <h3>Upcoming Classes</h3>
-            {timetable.filter(entry => entry.day === selectedDay).map((entry, index) => (
-              <div key={index} className="upcoming-class">
-                <p>{entry.course?.name}</p>
-                <p>{entry.time} - {entry.duration} hour(s)</p>
-                <p>{entry.classroom?.name}</p>
-              </div>
-            ))}
-          </div>
-          <div className="assignments">
-            <h3>Assignments</h3>
-            <p>No assignments due.</p>
-          </div>
-          <div className="calendar">
-            <h3>Calendar</h3>
-            <Calendar />
-          </div>
-        </aside>
+        <AnalyticsCalendar upcomingClasses={upcomingClasses} setSelectedDay={setSelectedDay}/>
         <footer className="footer">
           <p>&copy; 2024 UMaT. All rights reserved.</p>
         </footer>

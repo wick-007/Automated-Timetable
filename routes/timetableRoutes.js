@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 // Add a timetable entry with conflict checking based on time and duration
 router.post('/', async (req, res) => {
   const { day, time, duration, entries } = req.body;
-  
+
   // Calculate the end time of the new class (start time + duration in hours)
   const [startHour, startMinute] = time.split(':').map(Number);
   const newEndHour = startHour + duration; // New class ends after 'duration' hours
@@ -74,11 +74,12 @@ router.post('/new', async (req, res) => {
 
   try {
     // Extract lecturer and classroom from the entries for conflict checking
-    const { lecturer, classroom } = entries[0]; // Assuming the first entry contains key details
+    const { lecturer, classroom, course } = entries[0]; // Assuming the first entry contains key details
 
     // Convert lecturer and classroom to ObjectId using mongoose
     const lecturerId = new mongoose.Types.ObjectId(lecturer);
     const classroomId = new mongoose.Types.ObjectId(classroom);
+    const courseId = new mongoose.Types.ObjectId(course);
 
     // Log the converted ObjectIds for debugging purposes
 
@@ -91,6 +92,16 @@ router.post('/new', async (req, res) => {
           entries: {
             $elemMatch: {
               lecturer: lecturerId // Same lecturer (ObjectId comparison inside entries array)
+            }
+          },
+          startTime: { $lte: endMinutes }, // Existing entry starts before or at the new entry's end
+          endTime: { $gte: startMinutes }  // Existing entry ends after or at the new entry's start
+        },
+        // Check for time overlap with the same lecturer inside entries array
+        {
+          entries: {
+            $elemMatch: {
+              course: courseId // Same lecturer (ObjectId comparison inside entries array)
             }
           },
           startTime: { $lte: endMinutes }, // Existing entry starts before or at the new entry's end
@@ -123,7 +134,7 @@ router.post('/new', async (req, res) => {
       startTime: startMinutes,
       endTime: endMinutes
     });
-    
+
     const newTimetable = await timetable.save();
     res.status(201).json(newTimetable);
 

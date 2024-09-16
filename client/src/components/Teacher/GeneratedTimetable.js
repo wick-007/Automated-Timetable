@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './GeneratedTimetable.css';
+import TimetableButtons from '../timetableButtons';
 
 const GeneratedTimetable = () => {
   const [timetable, setTimetable] = useState([]);
@@ -66,6 +67,7 @@ const GeneratedTimetable = () => {
   return (
     <div className="generated-timetable">
       <h2>Generated Timetable</h2>
+      <TimetableButtons timetable={timetable} selectedDay={selectedDay}/>
       <div className="day-selector">
         {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
           <button

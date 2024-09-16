@@ -2,37 +2,69 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Styling for form groups */
+.form-group {
+  margin-top: 20px; /* Space between form groups */
+  margin-bottom: 20px; /* Space between form groups */
+  color: #333
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.form-group label {
+  display: block; /* Make the label a block element */
+  margin-bottom: 8px; /* Space between label and input */
+  font-size: 1rem; /* Font size for labels */
+  color: #333; /* Dark text color for better readability */
+  font-weight: 500; /* Slightly bolder font */
+}
+
+.form-group input,
+.form-group select {
+  width: 60%; /* Full width of the container */
+  padding: 12px; /* Larger padding for comfort */
+  border: 1px solid #ddd; /* Light border for input fields */
+  border-radius: 4px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+  font-size: 1rem; /* Font size for input fields */
+  color: #333; /* Dark text color for better readability */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff; /* Highlight border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Shadow for focus state */
+  outline: none; /* Remove default outline */
+  color: #333; /* Dark text color for better readability */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 980px) {
+  .form-group {
+    margin: 10px 0; /* Reduce margin for smaller screens */
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 10px; /* Adjust padding for smaller screens */
+    font-size: 0.875rem; /* Smaller font size for inputs */
+    width: 100%; /* Full width of the container */
+  }
+  
+  .form-group label {
+    font-size: 0.875rem; /* Smaller font size for labels */
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive styling for very small screens */
+@media (max-width: 480px) {
+  .form-group input,
+  .form-group select {
+    padding: 8px; /* Further reduce padding */
+    font-size: 0.75rem; /* Even smaller font size */
+    width: 100%; /* Full width of the container */
   }
-  to {
-    transform: rotate(360deg);
+  
+  .form-group label {
+    font-size: 0.75rem; /* Even smaller font size for labels */
   }
 }

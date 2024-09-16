@@ -55,15 +55,15 @@ const Classrooms = ({ setMessage }) => {
     <div className="classrooms">
       <button className='addcoursebtn'onClick={() => setShowForm(!showForm)}>Add Classroom</button>
       {showForm && (
-        <form onSubmit={handleSubmit} className="classroom-form">
+        <form onSubmit={handleSubmit} className="form-group">
           <h2>Add Classroom</h2>
-          <label>
+          <label >
             Name:
-            <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+            <input type="text" name="name" className='form-control' value={formData.name} onChange={handleInputChange} required />
           </label>
           <label>
             Capacity:
-            <input type="number" name="capacity" value={formData.capacity} onChange={handleInputChange} required />
+            <input type="number" name="capacity" className='form-control' value={formData.capacity} onChange={handleInputChange} required />
           </label>
           <button type="submit">Add</button>
         </form>

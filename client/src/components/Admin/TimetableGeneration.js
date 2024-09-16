@@ -44,13 +44,13 @@ const TimetableGeneration = ({ setMessage }) => {
     setSchedules(updatedSchedules);
   };
 
-  const handleAddSchedule = () => {
-    setSchedules([...schedules, { course: '', lecturer: '', classroom: '' }]);
-  };
+  // const handleAddSchedule = () => {
+  //   setSchedules([...schedules, { course: '', lecturer: '', classroom: '' }]);
+  // };
 
-  const handleRemoveSchedule = (index) => {
-    setSchedules(schedules.filter((_, i) => i !== index));
-  };
+  // const handleRemoveSchedule = (index) => {
+  //   setSchedules(schedules.filter((_, i) => i !== index));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,28 +82,33 @@ const TimetableGeneration = ({ setMessage }) => {
             ))}
           </select>
         </div>
-        <div className="form-group">
-          <label>Time:</label>
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Duration (hours):</label>
-          <input
-            type="number"
-            value={duration}
-            onChange={(e) => setDuration(parseInt(e.target.value, 10))}
-            className="form-control"
-            required
-            min="1"
-            max="4"
-          />
-        </div>
+  <div className="form-group">
+    <label htmlFor="time">Time:</label>
+    <input
+      type="time"
+      id="time"
+      value={time}
+      onChange={(e) => setTime(e.target.value)}
+      className="form-control"
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label htmlFor="duration">Duration (hours):</label>
+    <input
+      type="number"
+      id="duration"
+      value={duration}
+      onChange={(e) => setDuration(parseInt(e.target.value, 10))}
+      className="form-control"
+      required
+      min="1"
+      max="4"
+    />
+  </div>
+
+
+      
         <div className="schedules">
           {schedules.map((schedule, index) => (
             <div key={index} className="schedule-entry">
@@ -152,14 +157,14 @@ const TimetableGeneration = ({ setMessage }) => {
                   ))}
                 </select>
               </div>
-              <button type="button" onClick={() => handleRemoveSchedule(index)} className="remove-button">
+              {/* <button type="button" onClick={() => handleRemoveSchedule(index)} className="remove-button">
                 <FontAwesomeIcon icon={faTrash} />
-              </button>
+              </button> */}
             </div>
           ))}
-          <button type="button" onClick={handleAddSchedule} className="add-button">
+          {/* <button type="button" onClick={handleAddSchedule} className="add-button">
             <FontAwesomeIcon icon={faPlus} /> Add Schedule
-          </button>
+          </button> */}
         </div>
         <button type="submit" className="btn-submit">Generate Timetable</button>
       </form>

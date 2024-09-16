@@ -13,7 +13,7 @@ const createUser = async (role, email, password, name) => {
 };
 
 const main = async () => {
-  // await createUser('admin', 'admin123', 'password', 'Admin 1');
+  await createUser('admin', 'admin123', 'password', 'Admin 1');
   await createUser('teacher', 'teacher123', 'password', 'First Teacher');
   await createUser('student', '9001246819', 'password', 'First Student');
   await createUser('student', '9001246818', 'password', 'Second Student');

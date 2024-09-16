@@ -1,0 +1,33 @@
+/* headerImage.styles.css */
+.header-image {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transition: padding 0.3s; /* Smooth transition for padding change */
+  }
+
+  .__raw__header__image .__raw__logo{
+    width: 40px; /* Fixed width for the logo */
+    height: 40px; /* Fixed height for the logo */
+  }
+  
+  .logo-image {
+    width: 60px; /* Fixed width for the logo */
+    height: 60px; /* Fixed height for the logo */
+  }
+  
+  .logo-text {
+    font-size: 1.2rem; /* Font size for the text */
+    margin-left: 10px; /* Space between the logo and text */
+    font-weight: bold; /* Bold text */
+    color: #333; /* Dark color for better readability */
+    display: none; /* Hide text by default */
+  }
+  
+  /* Media Query for larger screens */
+  @media(min-width: 768px) {
+    .logo-text {
+      display: inline; /* Show text on larger screens */
+    }
+  }
+  

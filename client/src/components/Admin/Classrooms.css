@@ -2,55 +2,20 @@
 .classrooms {
     padding: 20px;
   }
-  
-  .classroom-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  .classroom-form label {
-    margin-bottom: 10px;
-  }
-  
-  .classroom-form input {
-    padding: 8px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    border-radius:20px;
-    border: 2px solid #ddd;
-  }
-  
-  .classroom-form button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 300px;
+
+  .classroom-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
   }
 
-  .classroom-form button:hover{
-    background-color: #03440c;
-  }
-  
-  .classroom-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
   .classroom-list li {
     padding: 10px;
     background-color: #f9f9f9;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 5px;
-    margin: inherit;
-    justify-content: space-around;
-    width: 500px;
-  }
-  
-  .classroom-list button{
-    margin-left: auto;
   }

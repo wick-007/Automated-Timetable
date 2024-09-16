@@ -65,32 +65,20 @@ const Lecturers = ({ setMessage }) => {
   return (
     <div className="lecturers">
       <h2>Manage Lecturers</h2>
-      <form onSubmit={handleSubmit} className="lecturer-form">
+      <form onSubmit={handleSubmit} className="form-group">
         <label>
           Name:
-          <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+          <input type="text" name="name" value={formData.name} onChange={handleInputChange} className='form-control' required />
         </label>
         <label>
           ID:
-          <input type="text" name="id" value={formData.id} onChange={handleInputChange} required />
+          <input type="text" name="id" className='form-control' value={formData.id} onChange={handleInputChange} required />
         </label>
-        <label>
-          Department:
-          <select name="department" value={formData.department} onChange={handleInputChange} required >
-          <option value={formData.department}>Select Department </option>
-            <option value={formData.department}>Computer Science and Engineering</option>
-            <option value={formData.department}>Mechanical Engineering</option>
-            <option value={formData.department}>Electrical and Electronic Engineering</option>
-            <option value={formData.department}>Geomatics Engineering</option>
-            <option value={formData.department}>Geological Engineering</option>
-            <option value={formData.department}>Environmental and Safety Engineering</option>
-            </select>
-        </label>
-        <button type="submit">Add Lecturer</button>
+        <button type="submit" className='__add__lecturer'>Add Lecturer</button>
       </form>
-      <div className="lecturer-list">
+      <div >
         <h3>Current Lecturers</h3>
-        <ul>
+        <ul className="lecturer-list"> 
           {lecturers.map(lecturer => (
             <li key={lecturer._id}>{lecturer.name} (ID: {lecturer.id})
              <button className='deletebtn' onClick={() => handleDelete(lecturer._id)}>Delete</button></li>

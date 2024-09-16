@@ -1,45 +1,16 @@
 .admin-dashboard {
   display: flex;
   min-height: 100vh;
-  background-color: f1f1f1;
+  background: linear-gradient(45deg, #ffeb3b, #8bc34a);;
 }
 
-.sidebar {
-  width: 200px;
-  background-color: #2b9348;;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo img {
-  width: 100px;
-  margin: 20px 0;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
-
-.sidebar ul li {
-  padding: 15px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.sidebar ul li:hover {
-  background-color: #03440c;
-  /* background-color: #444; */
-}
 .content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow-y: auto; /* Enable vertical scrolling */
+  
 }
 
 .top-bar {
@@ -51,20 +22,21 @@
 }
 
 .search-bar input {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+
 }
 
 .profile {
   display: flex;
   align-items: center;
+  gap: 12px
 }
 
 .profile img {
   width: 30px;
   border-radius: 50%;
-  margin-right: 10px;
 }
 
 .main-content {
@@ -74,33 +46,50 @@
 
 .stats {
   display: grid;
-  justify-content: space-around;
-  grid-row: auto auto;
-  grid-column-gap: 50px;
-  grid-row-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px; /* Adjust the gap between boxes */
+  margin: 20px;
 }
 
 .stat-box {
+  background-color: #f8f9fa; /* Light background for better visibility */
+  border: 1px solid #ddd; /* Light border for separation */
+  border-radius: 8px; /* Rounded corners for a modern look */
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 2px solid #ddd;
-  border-radius: 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  width: 500px;
-  align-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.25rem; /* Larger font size for better readability */
+  color: #333; /* Dark text color for better contrast */
 }
 
 .stat-box button {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
   border: none;
-  cursor: pointer;
   border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
 }
-.stat-box button:hover{
-  background-color: #03440c;
+
+.stat-box button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.stat-box:hover {
+  transform: scale(1.02); /* Slightly enlarge the stat-box on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
 }
 
 .footer {
@@ -111,34 +100,37 @@
   margin-top: auto; /* Push footer to the bottom */
 }
 
-.message {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  color: white;
-  text-align: center;
-}
-
-.message.success {
-  background-color: #4CAF50;
-}
-
-.message.error {
-  background-color: #f44336;
-}
-.message {
-  padding: 10px;
+.__message__container {
+  position: relative;
+  padding: 4px;
+  /* padding-right: 40px; */
   margin-bottom: 10px;
   border-radius: 4px;
   text-align: center;
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
 }
 
-.message.success {
+.__message__icon {
+  position: absolute;
+  background-color: #fff;
+  color: #f44336;
+  border-radius: 40px;
+  top: 10px; /* Added px unit */
+  right: 10px; /* Added px unit */
+  width: 20px; /* Adjusted to a smaller size */
+  height: 20px; /* Adjusted to a smaller size */
+  cursor: pointer;
+}
+
+
+.__message__container.success {
   background-color: #4CAF50;
   color: white;
 }
 
-.message.error {
+.__message__container.error {
   background-color: #f44336;
   color: white;
 }

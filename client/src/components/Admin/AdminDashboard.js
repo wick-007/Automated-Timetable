@@ -1,22 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
+import '../../styles/sidebar.styles.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
-  faPlus,
-  faCogs,
-  faSignOutAlt,
-  faChartPie,
-  faChalkboardTeacher,
-  faBook,
-  faClock,
-  faClipboardList,
-  faUsers,
-  faBuilding,
-  faExclamationTriangle,
-  faEnvelopeOpenText,
-  faTable,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Classrooms from "./Classrooms";
 import Courses from "./Courses";
@@ -26,6 +15,7 @@ import ConflictReports from "./ConflictReports";
 import LecturerPreferences from "./LecturerPreferences";
 import GeneratedTimetable from "./GeneratedTimetable";
 import { componentsData } from "../../lib/data";
+import HeaderImage from "../headerImage";
 
 const AdminDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("dashboard");
@@ -92,9 +82,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <div className="sidebar">
-        <div className="logo">
-          <img src="/UMaT_logo.jpg" alt="UMaT Logo" />
-        </div>
+        <HeaderImage />
         <ul>
           {componentsData.map(({ label, icon: iconName, name }, index) => (
             <li
@@ -107,7 +95,7 @@ const AdminDashboard = () => {
                   : () => setActiveComponent(name)
               }
             >
-              <FontAwesomeIcon icon={iconName} />
+              <FontAwesomeIcon icon={iconName}  style={{ marginRight: 10}}/>
               <span>{label}</span>
             </li>
           ))}
@@ -119,14 +107,17 @@ const AdminDashboard = () => {
             <input type="text" placeholder="Search..." />
           </div>
           <div className="profile">
-            <img src="/profile.jpg" alt="Admin Profile" />
+            <HeaderImage type={'raw'}/>
             <span>Admin Name</span>
             <FontAwesomeIcon icon={faBell} />
           </div>
         </div>
         <div className="main-content">
           {message && (
-            <div className={`message ${message.type}`}>{message.text}</div>
+            <div className={`__message__container ${message.type}`}>
+              <div className={`message `}>{message.text}</div>
+              <FontAwesomeIcon icon={faTimes} className="__message__icon" onClick={() => setMessage(null)}/>
+            </div>
           )}
           {renderComponent()}
         </div>

@@ -56,17 +56,17 @@ const Courses = ({ setMessage }) => {
     <div className="courses">
       <button onClick={() => setShowForm(!showForm)} className='addcoursebtn'>Add Course</button>
       {showForm && (
-        <form onSubmit={handleSubmit} className="course-form">
+        <form onSubmit={handleSubmit} className="form-group">
           <h2>Add Course</h2>
           <label>
             Name:
-            <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+            <input type="text" name="name" className="form-control" value={formData.name} onChange={handleInputChange} required />
           </label>
           <label>
             Code:
-            <input type="text" name="code" value={formData.code} onChange={handleInputChange} required />
+            <input type="text" name="code" className="form-control" value={formData.code} onChange={handleInputChange} required />
           </label>
-          <button type="submit">Add</button>
+          <button type="submit" className='addcoursebtn'> Add</button>
         </form>
       )}
       <ul className="course-list">
