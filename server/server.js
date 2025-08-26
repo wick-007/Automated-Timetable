@@ -44,7 +44,7 @@ app.post('/api/authenticate', async (req, res) => {
   const { role, id, password } = req.body;
 
 
-  const user = await User.findOne({ role, id });
+  const user = await User.findOne({ role, id, });
   if (user && bcrypt.compareSync(password, user.password)) {
     res.send({ success: true });
   } else {
