@@ -21,9 +21,9 @@ const TimetableGeneration = ({ setMessage }) => {
     try {
       // Create an array of promises
       const [coursesResponse, lecturersResponse, classroomsResponse] = await Promise.all([
-        axios.get('http://localhost:5001/api/courses'),
-        axios.get('http://localhost:5001/api/lecturers'),
-        axios.get('http://localhost:5001/api/classrooms'),
+        axios.get(`${process.env.REACT_APP_API_URL}/courses`),
+        axios.get(`${process.env.REACT_APP_API_URL}/lecturers`),
+        axios.get(`${process.env.REACT_APP_API_URL}/classrooms`),
       ]);
   
       // Set the state with the fetched data
@@ -55,7 +55,7 @@ const TimetableGeneration = ({ setMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/timetable/new', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/timetable/new`, {
         day,
         time,
         duration,

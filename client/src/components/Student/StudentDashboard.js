@@ -26,7 +26,7 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchTimetable = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5001/api/timetable');
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/timetable`);
         setTimetable(data);
       } catch (error) {
         console.error('Error fetching timetable', error);

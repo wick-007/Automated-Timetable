@@ -13,7 +13,7 @@ const Courses = ({ setMessage }) => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/courses');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/courses`);
       setCourses(response.data);
     } catch (error) {
       setMessage({ text: 'Error fetching courses', type: 'error' });
@@ -29,7 +29,7 @@ const Courses = ({ setMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/courses', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/courses`, formData);
       if (response.status === 201) {
         setMessage({ text: 'Course added successfully', type: 'success' });
         fetchCourses();
@@ -43,7 +43,7 @@ const Courses = ({ setMessage }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/courses/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/courses/${id}`);
       setMessage({ text: 'Course deleted successfully', type: 'success' });
       fetchCourses();
     } catch (error) {

@@ -13,7 +13,7 @@ const GeneratedTimetable = () => {
 
   const fetchTimetable = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/timetable');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/timetable`);
       setTimetable(response.data);
     } catch (error) {
       console.error('Error fetching timetable', error);

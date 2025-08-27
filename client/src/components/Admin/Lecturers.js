@@ -15,7 +15,7 @@ const Lecturers = ({ setMessage }) => {
 
   const fetchLecturers = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/lecturers');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/lecturers`);
       setLecturers(response.data);
     } catch (error) {
       setMessage({ text: 'Error fetching lecturers', type: 'error' });
@@ -30,7 +30,7 @@ const Lecturers = ({ setMessage }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/lecturers/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/lecturers/${id}`);
       setMessage({ text: 'Lecturer deleted successfully', type: 'success' });
       fetchLecturers();
     } catch (error) {
@@ -48,7 +48,7 @@ const Lecturers = ({ setMessage }) => {
         return;
       }
 
-      const response = await axios.post('http://localhost:5001/api/lecturers', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/lecturers`, formData);
       if (response.status === 201) {
         setMessage({ text: 'Lecturer added successfully', type: 'success' });
         setLecturers([...lecturers, response.data]);

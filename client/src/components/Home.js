@@ -14,7 +14,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/authenticate', { role, id, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/authenticate`, { role, id, password });
       if (response.data.success) {
         if (role === ADMIN) navigate('/admin');
         else if (role === TEACHER) navigate('/teacher');

@@ -14,13 +14,13 @@ const AddCourseForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const coursesResponse = await axios.get('/api/courses');
+      const coursesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/courses`);
       setCourses(coursesResponse.data);
 
-      const roomsResponse = await axios.get('/api/rooms');
+      const roomsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/rooms`);
       setRooms(roomsResponse.data);
 
-      const lecturersResponse = await axios.get('/api/users?role=teacher');
+      const lecturersResponse = await axios.get(`${process.env.REACT_APP_API_URL}/users?role=teacher`);
       setLecturers(lecturersResponse.data);
     };
 
@@ -31,7 +31,7 @@ const AddCourseForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post('/api/timetable/create', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/timetable/create`, {
         day,
         startTime,
         endTime,

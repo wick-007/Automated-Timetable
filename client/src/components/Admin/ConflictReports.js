@@ -11,7 +11,7 @@ const ConflictReports = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/conflict-reports');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/conflict-reports`);
       setReports(response.data);
     } catch (error) {
       console.error('Error fetching conflict reports', error);
@@ -20,7 +20,7 @@ const ConflictReports = () => {
 
   const handleResolve = async (id) => {
     try {
-      await axios.post(`http://localhost:5001/api/conflict-reports/${id}/resolve`);
+      await axios.post(`${process.env.REACT_APP_API_URL}/conflict-reports/${id}/resolve`);
       fetchReports(); // Refresh the list
     } catch (error) {
       console.error('Error resolving report', error);
@@ -29,7 +29,7 @@ const ConflictReports = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.post(`http://localhost:5001/api/conflict-reports/${id}/reject`);
+      await axios.post(`${process.env.REACT_APP_API_URL}/conflict-reports/${id}/reject`);
       fetchReports(); // Refresh the list
     } catch (error) {
       console.error('Error rejecting report', error);

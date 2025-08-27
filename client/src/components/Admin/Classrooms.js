@@ -13,7 +13,7 @@ const Classrooms = ({ setMessage }) => {
 
   const fetchClassrooms = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/classrooms');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/classrooms`);
       setClassrooms(response.data);
     } catch (error) {
       console.error('Error fetching classrooms', error);
@@ -28,7 +28,7 @@ const Classrooms = ({ setMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/classrooms', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/classrooms`, formData);
       if (response.status === 201) {
         setMessage('Classroom added successfully');
         fetchClassrooms();
@@ -42,7 +42,7 @@ const Classrooms = ({ setMessage }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/classrooms/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/classrooms/${id}`);
       setMessage('Classroom deleted successfully');
       fetchClassrooms();
     } catch (error) {

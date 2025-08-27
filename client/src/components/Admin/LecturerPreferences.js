@@ -15,7 +15,7 @@ const LecturerPreferences = () => {
 
   const fetchPreferences = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/lecturer-preferences');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/lecturer-preferences`);
       setPreferences(response.data);
     } catch (error) {
       console.error('Error fetching lecturer preferences', error);
@@ -30,7 +30,7 @@ const LecturerPreferences = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/lecturer-preferences', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/lecturer-preferences`, formData);
       if (response.status === 201) {
         fetchPreferences(); // Refresh the list after adding a new preference
       }
